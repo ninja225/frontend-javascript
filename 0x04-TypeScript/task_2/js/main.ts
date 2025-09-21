@@ -1,5 +1,5 @@
-// Teacher interface with readonly firstName and lastName, required and optional properties, and extensible attributes
-interface Teacher {
+// TeacherInfo interface with readonly firstName and lastName, required and optional properties, and extensible attributes
+interface TeacherInfo {
     readonly firstName: string;
     readonly lastName: string;
     fullTimeEmployee: boolean;
@@ -8,13 +8,13 @@ interface Teacher {
     [propName: string]: any;
 }
 
-// Directors interface that extends Teacher
-interface Directors extends Teacher {
+// Directors interface that extends TeacherInfo
+interface Directors extends TeacherInfo {
     numberOfReports: number;
 }
 
 // Create teacher3 example
-const teacher3: Teacher = {
+const teacher3: TeacherInfo = {
     firstName: 'John',
     fullTimeEmployee: false,
     lastName: 'Doe',
@@ -98,7 +98,7 @@ interface TeacherInterface {
 }
 
 // Director class implementing DirectorInterface
-class DirectorEmployee implements DirectorInterface {
+class Director implements DirectorInterface {
     workFromHome(): string {
         return "Working from home";
     }
@@ -113,7 +113,7 @@ class DirectorEmployee implements DirectorInterface {
 }
 
 // Teacher class implementing TeacherInterface
-class TeacherEmployee implements TeacherInterface {
+class Teacher implements TeacherInterface {
     workFromHome(): string {
         return "Cannot work from home";
     }
@@ -128,11 +128,11 @@ class TeacherEmployee implements TeacherInterface {
 }
 
 // createEmployee function
-function createEmployee(salary: number | string): DirectorEmployee | TeacherEmployee {
+function createEmployee(salary: number | string): Director | Teacher {
     if (typeof salary === 'number' && salary < 500) {
-        return new TeacherEmployee();
+        return new Teacher();
     }
-    return new DirectorEmployee();
+    return new Director();
 }
 
 // Example usage
@@ -141,12 +141,12 @@ console.log(createEmployee(1000));
 console.log(createEmployee('$500'));
 
 // Type predicate function to check if employee is a Director
-function isDirector(employee: DirectorEmployee | TeacherEmployee): employee is DirectorEmployee {
-    return employee instanceof DirectorEmployee;
+function isDirector(employee: Director | Teacher): employee is Director {
+    return employee instanceof Director;
 }
 
 // Function to execute work based on employee type
-function executeWork(employee: DirectorEmployee | TeacherEmployee): string {
+function executeWork(employee: Director | Teacher): string {
     if (isDirector(employee)) {
         return employee.workDirectorTasks();
     } else {

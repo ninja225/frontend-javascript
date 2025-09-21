@@ -8,8 +8,8 @@ interface Teacher {
     [propName: string]: any;
 }
 
-// Directors interface that extends Teacher
-interface Directors extends Teacher {
+// Director interface that extends Teacher
+interface Director extends Teacher {
     numberOfReports: number;
 }
 
@@ -25,7 +25,7 @@ const teacher3: Teacher = {
 console.log(teacher3);
 
 // Create director1 example
-const director1: Directors = {
+const director1: Director = {
     firstName: 'John',
     lastName: 'Doe',
     location: 'London',
@@ -41,9 +41,9 @@ interface printTeacherFunction {
 }
 
 // printTeacher function implementation
-const printTeacher: printTeacherFunction = (firstName: string, lastName: string): string => {
-    return `${firstName.charAt(0)}. ${lastName}`;
-};
+function printTeacher(firstName: string, lastName: string): string {
+    return `${firstName}. ${lastName}`;
+}
 
 // Example usage
 console.log(printTeacher("John", "Doe")); // J. Doe
@@ -60,7 +60,7 @@ interface StudentClassInterface {
 }
 
 // StudentClass implementation
-class StudentClass implements StudentClassInterface {
+class StudentClass {
     firstName: string;
     lastName: string;
 
